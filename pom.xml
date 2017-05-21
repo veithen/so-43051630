@@ -62,4 +62,22 @@
             <version>${axiom.version}</version>
         </dependency>
     </dependencies>
+    <build>
+        <plugins>
+            <plugin>
+                <groupId>org.codehaus.mojo</groupId>
+                <artifactId>exec-maven-plugin</artifactId>
+                <version>1.6.0</version>
+                <configuration>
+                    <executable>java</executable>
+                    <arguments>
+                        <argument>-agentpath:${user.home}/honest-profiler/liblagent.so=interval=7,logPath=${project.build.directory}/log.hpl</argument>
+                        <argument>-classpath</argument>
+                        <classpath />
+                        <argument>test.Test</argument>
+                    </arguments>
+                </configuration>
+            </plugin>
+        </plugins>
+    </build>
 </project>
