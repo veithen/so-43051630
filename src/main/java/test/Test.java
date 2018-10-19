@@ -5,7 +5,7 @@ import java.util.logging.Logger;
 
 import org.eclipse.jetty.server.Connector;
 import org.eclipse.jetty.server.Server;
-import org.eclipse.jetty.server.nio.SelectChannelConnector;
+import org.eclipse.jetty.server.ServerConnector;
 import org.eclipse.jetty.servlet.ServletContextHandler;
 import org.eclipse.jetty.servlet.ServletHolder;
 import org.eclipse.jetty.util.thread.QueuedThreadPool;
@@ -21,10 +21,9 @@ import org.springframework.ws.transport.http.MessageDispatcherServlet;
 public class Test {
     public static void main(String[] args) throws Exception {
         Logger.getLogger("").setLevel(Level.SEVERE);
-        Server server = new Server();
+        Server server = new Server(new QueuedThreadPool(4));
         
-        server.setThreadPool(new QueuedThreadPool(3));
-        Connector connector = new SelectChannelConnector();
+        ServerConnector connector = new ServerConnector(server);
         connector.setPort(8888);
         server.setConnectors(new Connector[] { connector });
         ServletContextHandler handler = new ServletContextHandler(server, "/");
