@@ -4,7 +4,7 @@
     <artifactId>so-43051630</artifactId>
     <version>1-SNAPSHOT</version>
     <properties>
-        <axiom.version>1.3.0-SNAPSHOT</axiom.version>
+        <axiom.version>1.3.0</axiom.version>
     </properties>
     <dependencies>
         <dependency>
